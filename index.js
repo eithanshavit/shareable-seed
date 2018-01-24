@@ -1,7 +1,9 @@
 const bip39 = require('bip39')
+const wordlistCodes = require('./lib/wordlistCodes')
 
 const INVALID_MNEMONIC = 'Invalid mnemonic'
 const INVALID_THRESHOLD = 'Invalid threshold'
+const INVALID_WORDLIST_NAME = 'Invalid wordlist name'
 
 function isNumber (value) {
   return typeof value === 'number' && isFinite(value)
@@ -20,7 +22,13 @@ function validateThreshold (threshold) {
   return true
 }
 
+function validateWordlistName (wordlistName) {
+  if (!wordlistCodes.hasOwnProperty(wordlistName)) throw new Error(INVALID_WORDLIST_NAME)
+  return true
+}
+
 module.exports = {
   validateMnemonic,
-  validateThreshold
+  validateThreshold,
+  validateWordlistName
 }

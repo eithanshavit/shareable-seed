@@ -53,3 +53,15 @@ test('validateThreshold passes', () => {
   var validThrshold = 3
   expect(shareableSeed.validateThreshold(validThrshold)).toBeTruthy()
 })
+
+test('validateWordlistName passes', () => {
+  var validWordlistName = 'english'
+  expect(shareableSeed.validateWordlistName(validWordlistName)).toBeTruthy()
+})
+
+test('validateWordlistName fail', () => {
+  var invalidWordlistName = 'invalidWordlist'
+  expect(() => {
+    shareableSeed.validateWordlistName(invalidWordlistName)
+  }).toThrow(Error('Invalid wordlist name'))
+})
