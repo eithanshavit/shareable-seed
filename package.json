@@ -1,0 +1,27 @@
+{
+  "name": "shareable-seed",
+  "version": "0.0.1",
+  "description": "A utility package for splitting a BIP39 mnemonic into shareable secret which can then be combined to recover the seed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eithanshavit/shareable-seed.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "secret",
+    "seed",
+    "mnemonic",
+    "bip39",
+    "bip32"
+  ],
+  "author": "Eithan Shavit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eithanshavit/shareable-seed/issues"
+  },
+  "homepage": "https://github.com/eithanshavit/shareable-seed#readme"
+}
