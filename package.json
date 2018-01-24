@@ -29,5 +29,8 @@
     "standard": "standard",
     "test": "npm run standard && npm run unit",
     "unit": "jest"
+  },
+  "dependencies": {
+    "bip39": "^2.5.0"
   }
 }
