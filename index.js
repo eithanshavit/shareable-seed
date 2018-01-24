@@ -1,9 +1,11 @@
 const bip39 = require('bip39')
+const _ = require('lodash')
 const wordlistCodes = require('./lib/wordlistCodes')
 
 const INVALID_MNEMONIC = 'Invalid mnemonic'
 const INVALID_THRESHOLD = 'Invalid threshold'
 const INVALID_WORDLIST_NAME = 'Invalid wordlist name'
+const INVALID_WORDLIST_CODE = 'Invalid wordlist code'
 
 function isNumber (value) {
   return typeof value === 'number' && isFinite(value)
@@ -27,7 +29,13 @@ function validateWordlistName (wordlistName) {
   return true
 }
 
+function validateWordlistCode (wordlistCode) {
+  if (!_.find(wordlistCodes, function (v, k) { console.log(k, v); return v === wordlistCode })) throw new Error(INVALID_WORDLIST_CODE)
+  return true
+}
+
 module.exports = {
+  validateWordlistCode,
   validateMnemonic,
   validateThreshold,
   validateWordlistName
