@@ -27,3 +27,29 @@ test('validateMnemonic fails on long mnemonic', () => {
     shareableSeed.validateMnemonic(invalidMnemonic)
   }).toThrow(Error('Invalid mnemonic'))
 })
+
+test('validateThreshold fails on string', () => {
+  var invalidThrshold = 'invalidThrshold'
+  expect(() => {
+    shareableSeed.validateThreshold(invalidThrshold)
+  }).toThrow(Error('Invalid threshold'))
+})
+
+test('validateThreshold fails on low threshold', () => {
+  var invalidThrshold = 1
+  expect(() => {
+    shareableSeed.validateThreshold(invalidThrshold)
+  }).toThrow(Error('Invalid threshold'))
+})
+
+test('validateThreshold fails on high threshold', () => {
+  var invalidThrshold = 300
+  expect(() => {
+    shareableSeed.validateThreshold(invalidThrshold)
+  }).toThrow(Error('Invalid threshold'))
+})
+
+test('validateThreshold passes', () => {
+  var validThrshold = 3
+  expect(shareableSeed.validateThreshold(validThrshold)).toBeTruthy()
+})
