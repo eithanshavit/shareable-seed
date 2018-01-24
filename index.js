@@ -1,5 +1,6 @@
 const bip39 = require('bip39')
 const _ = require('lodash')
+const zeroFill = require('zero-fill')
 const wordlistCodes = require('./lib/wordlistCodes')
 
 const INVALID_MNEMONIC = 'Invalid mnemonic'
@@ -34,7 +35,14 @@ function validateWordlistCode (wordlistCode) {
   return true
 }
 
+function thresholdToHexCode (threshold) {
+  validateThreshold(threshold)
+  const adujustedThreshold = threshold % (2 ** 8)
+  return zeroFill(2, adujustedThreshold.toString(16))
+}
+
 module.exports = {
+  thresholdToHexCode,
   validateWordlistCode,
   validateMnemonic,
   validateThreshold,

@@ -77,3 +77,13 @@ test('validateWordlistCode passes', () => {
   var validWordlistCode = '00'
   expect(shareableSeed.validateWordlistCode(validWordlistCode)).toBeTruthy()
 })
+
+test('thresholdToHexCode valid threshold', () => {
+  var validThreshold = 9
+  expect(shareableSeed.thresholdToHexCode(validThreshold)).toBe('09')
+})
+
+test('thresholdToHexCode valid threshold 2', () => {
+  var validThreshold = 25
+  expect(shareableSeed.thresholdToHexCode(validThreshold)).toBe('19')
+})
