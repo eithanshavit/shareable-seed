@@ -22,9 +22,12 @@
   },
   "homepage": "https://github.com/eithanshavit/shareable-seed#readme",
   "devDependencies": {
-    "jest": "^22.1.4"
+    "jest": "^22.1.4",
+    "standard": "^10.0.3"
   },
   "scripts": {
-    "test": "jest"
+    "standard": "standard",
+    "test": "npm run standard && npm run unit",
+    "unit": "jest"
   }
 }

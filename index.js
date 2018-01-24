@@ -1,4 +1,4 @@
-function mnemonicToShares(mnemonic, threshold, wordlistCode) {
+function mnemonicToShares (mnemonic, threshold, wordlistCode) {
   return 1
 }
 
