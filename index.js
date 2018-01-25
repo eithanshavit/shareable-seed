@@ -19,15 +19,15 @@ function mnemonicToEntropy (mnemonic, wordlistName) {
   return bip39.mnemonicToEntropy(mnemonic, wordlist)
 }
 
-function mnemonicToShareableCode (mnemonic, version, wordlistName) {
+function mnemonicToShareableCode (mnemonic, versionName, wordlistName) {
   validators.validateMnemonic(mnemonic)
-  validators.validateVersion(version)
+  validators.validateVersionName(versionName)
   validators.validateWordlistName(wordlistName)
   const wordlistCode = _.get(wordlistCodes, wordlistName)
   const entropyHex = mnemonicToEntropy(mnemonic, wordlistName)
   const paddedEntropy = zeroFill(ENTROPY_HEX_PADDED_LENGTH, entropyHex)
   const entropyHexLengthCode = util.numberToHexCode(entropyHex.length, ENTROPY_HEX_LENGTH_PADDED_HEX, true)
-  const versionCode = _.get(versionCodes, 'v1', '00')
+  const versionCode = _.get(versionCodes, versionName, '00')
   const rawShareableCode = versionCode + wordlistCode + entropyHexLengthCode + paddedEntropy
   // Shareable Code Format: <versionCode(8bitHex)><wordlistCode(8bitHex)><entropyHexCountCode(8bitHex)><entropy(128-256bitHex)><checksum(32bitHex)>
   const checksum = shajs('sha256').update(rawShareableCode).digest('hex').slice(0, CHECKSUM_HEX_LENGTH)

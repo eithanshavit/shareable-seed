@@ -78,15 +78,27 @@ test('validateWordlistCode passes', () => {
   expect(validators.validateWordlistCode(validWordlistCode)).toBeTruthy()
 })
 
-test('validateVersion passes', () => {
-  var validateVersion = 'v1'
-  expect(validators.validateVersion(validateVersion)).toBeTruthy()
+test('validateVersionName passes', () => {
+  var validVersionName = 'v1'
+  expect(validators.validateVersionName(validVersionName)).toBeTruthy()
 })
 
-test('validateVersion fails', () => {
-  var invalidVersion = 'nonversion'
+test('validateVersionName fails', () => {
+  var invalidVersionName = 'nonversion'
   expect(() => {
-    validators.validateVersion(invalidVersion)
+    validators.validateVersionName(invalidVersionName)
+  }).toThrow(Error('Invalid shareable code version'))
+})
+
+test('validateVersionHex passes', () => {
+  var validVersionHex = '01'
+  expect(validators.validateVersionHex(validVersionHex)).toBeTruthy()
+})
+
+test('validateVersionHex fails', () => {
+  var invalidVersionHex = '00'
+  expect(() => {
+    validators.validateVersionHex(invalidVersionHex)
   }).toThrow(Error('Invalid shareable code version'))
 })
 
