@@ -1,0 +1,29 @@
+/* eslint-env jest */
+const zeroFill = require('zero-fill')
+const shajs = require('sha.js')
+
+const extractors = require('../lib/extractors')
+const util = require('../lib/util')
+
+function mnemonicEntropyHexLengthHex (mnemonic) {
+  var mnemonicWordCount = mnemonic.trim().split(/\s+/g).length
+  return util.numberToHexCode(mnemonicWordCount * 32 / 12, 2, true)
+}
+
+test('extractVersion v1', () => {
+  var mnemonic = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong'
+  var wordlistCode = '00'
+  var versionCode = '01'
+  var rawShareableCode = versionCode + wordlistCode + mnemonicEntropyHexLengthHex(mnemonic) + zeroFill(64, 'ffffffffffffffffffffffffffffffff')
+  var shareableCode = rawShareableCode + shajs('sha256').update(rawShareableCode).digest('hex').slice(0, 8)
+  expect(extractors.extractVersionHex(shareableCode)).toBe(versionCode)
+})
+
+test('extractWordlistCode v1', () => {
+  var mnemonic = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong'
+  var wordlistCode = '00'
+  var versionCode = '01'
+  var rawShareableCode = versionCode + wordlistCode + mnemonicEntropyHexLengthHex(mnemonic) + zeroFill(64, 'ffffffffffffffffffffffffffffffff')
+  var shareableCode = rawShareableCode + shajs('sha256').update(rawShareableCode).digest('hex').slice(0, 8)
+  expect(extractors.extractWordlistCode(shareableCode)).toBe(wordlistCode)
+})
