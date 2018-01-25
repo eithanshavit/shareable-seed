@@ -87,5 +87,17 @@ test('validateVersion fails', () => {
   var invalidVersion = 'nonversion'
   expect(() => {
     validators.validateVersion(invalidVersion)
-  }).toThrow(Error('Invalid shareable seed version'))
+  }).toThrow(Error('Invalid shareable code version'))
+})
+
+test('validateShareableCodeChecksum passes', () => {
+  var validCode = '0100404fa1a8bc3e6d80ee1316050e862c1812031493212b7ec3f3bb1b08f168cabeef505ba346'
+  expect(validators.validateShareableCodeChecksum(validCode)).toBeTruthy()
+})
+
+test('validateShareableCodeChecksum fails', () => {
+  var invalidCode = '0100404fa1a8bc3e6d80ee1316050e862c1812031493212b7ec3f3bb1b08f168cabeef505ba347'
+  expect(() => {
+    validators.validateShareableCodeChecksum(invalidCode)
+  }).toThrow(Error('Invalid shareable code checksum'))
 })
