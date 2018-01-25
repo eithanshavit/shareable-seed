@@ -87,3 +87,15 @@ test('thresholdToHexCode valid threshold 2', () => {
   var validThreshold = 25
   expect(shareableSeed.thresholdToHexCode(validThreshold)).toBe('19')
 })
+
+test('validateVersion passes', () => {
+  var validateVersion = 'v1'
+  expect(shareableSeed.validateVersion(validateVersion)).toBeTruthy()
+})
+
+test('validateVersion fails', () => {
+  var invalidVersion = 'nonversion'
+  expect(() => {
+    shareableSeed.validateVersion(invalidVersion)
+  }).toThrow(Error('Invalid shareable seed version'))
+})

@@ -2,11 +2,13 @@ const bip39 = require('bip39')
 const _ = require('lodash')
 const zeroFill = require('zero-fill')
 const wordlistCodes = require('./lib/wordlistCodes')
+const versionCodes = require('./lib/versionCodes')
 
 const INVALID_MNEMONIC = 'Invalid mnemonic'
 const INVALID_THRESHOLD = 'Invalid threshold'
 const INVALID_WORDLIST_NAME = 'Invalid wordlist name'
 const INVALID_WORDLIST_CODE = 'Invalid wordlist code'
+const INVALID_SHAREABLE_SEED_VERSION = 'Invalid shareable seed version'
 
 function isNumber (value) {
   return typeof value === 'number' && isFinite(value)
@@ -30,8 +32,13 @@ function validateWordlistName (wordlistName) {
   return true
 }
 
+function validateVersion (version) {
+  if (!versionCodes.hasOwnProperty(version)) throw new Error(INVALID_SHAREABLE_SEED_VERSION)
+  return true
+}
+
 function validateWordlistCode (wordlistCode) {
-  if (!_.find(wordlistCodes, function (v, k) { console.log(k, v); return v === wordlistCode })) throw new Error(INVALID_WORDLIST_CODE)
+  if (!_.find(wordlistCodes, function (v, k) { return v === wordlistCode })) throw new Error(INVALID_WORDLIST_CODE)
   return true
 }
 
@@ -45,6 +52,7 @@ module.exports = {
   thresholdToHexCode,
   validateWordlistCode,
   validateMnemonic,
+  validateVersion,
   validateThreshold,
   validateWordlistName
 }
