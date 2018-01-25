@@ -29,7 +29,7 @@ function mnemonicToShareableCode (mnemonic, version, wordlistName) {
   const entropyHexLengthCode = util.numberToHexCode(entropyHex.length, ENTROPY_HEX_LENGTH_PADDED_HEX, true)
   const versionCode = _.get(versionCodes, 'v1', '00')
   const rawShareableCode = versionCode + wordlistCode + entropyHexLengthCode + paddedEntropy
-  // Shareable Code Format: <versionCode(8bitHex)><wordlistCode(8bitHex)><entropyHexCountCode(8bitHex)><entropy(128-256bitHex)>
+  // Shareable Code Format: <versionCode(8bitHex)><wordlistCode(8bitHex)><entropyHexCountCode(8bitHex)><entropy(128-256bitHex)><checksum(32bitHex)>
   const checksum = shajs('sha256').update(rawShareableCode).digest('hex').slice(0, CHECKSUM_HEX_LENGTH)
   return rawShareableCode + checksum
 }
