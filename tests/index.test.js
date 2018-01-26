@@ -71,3 +71,27 @@ test('shareableCodeToMnemonic valid code 24 words', () => {
   var shareableCode = rawShareableCode + shajs('sha256').update(rawShareableCode).digest('hex').slice(0, 8)
   expect(shareableSeed.shareableCodeToMnemonic(shareableCode)).toBe(mnemonic)
 })
+
+test('shareableCode<=>Mnemonic e2e (1)', () => {
+  var mnemonic = 'exile ask congress lamp submit jacket era scheme attend cousin alcohol catch course end lucky hurt sentence oven short ball bird grab wing top'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareableCode = shareableSeed.mnemonicToShareableCode(mnemonic, versionName, wordlistName)
+  expect(shareableSeed.shareableCodeToMnemonic(shareableCode)).toBe(mnemonic)
+})
+
+test('shareableCode<=>Mnemonic e2e (2)', () => {
+  var mnemonic = 'letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic avoid letter always'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareableCode = shareableSeed.mnemonicToShareableCode(mnemonic, versionName, wordlistName)
+  expect(shareableSeed.shareableCodeToMnemonic(shareableCode)).toBe(mnemonic)
+})
+
+test('shareableCode<=>Mnemonic e2e (2)', () => {
+  var mnemonic = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareableCode = shareableSeed.mnemonicToShareableCode(mnemonic, versionName, wordlistName)
+  expect(shareableSeed.shareableCodeToMnemonic(shareableCode)).toBe(mnemonic)
+})
