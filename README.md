@@ -20,7 +20,7 @@ A threshold can be provided to allow a minimum number of the total *shares* to b
 ## shareable_code format:
 ### v1
 ```
-<versionCode(8bitHex)><wordlistCode(8bitHex)><entropyLenghHex(8bitHex)><entropy(128-256bitHex)><checksum(32bitHex)>
+<versionCode(8bitHex)><wordlistCode(8bitHex)><entropyLenghHex(8bitHex)><entropy(zeroPadded256bitHex)><checksum(32bitHex)>
 ```
 
 ## Installation
