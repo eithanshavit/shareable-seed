@@ -6,11 +6,18 @@ const validators = require('./lib/validators')
 const wordlistCodes = require('./lib/wordlistCodes')
 const versionCodes = require('./lib/versionCodes')
 const util = require('./lib/util')
+const extractors = require('./lib/extractors')
 
 const INVALID_WORDLIST_NAME = 'Invalid wordlist name'
 const ENTROPY_LENGTH_PADDED_HEX = 2
 const ENTROPY_PADDED_LENGTH = 64
 const CHECKSUM_HEX_LENGTH = 8
+
+function wordlistCodeToWordlist (wordlistCode) {
+  validators.validateWordlistCode(wordlistCode)
+  const wordlistName = _.find(wordlistCodes, function (v, k) { return v === wordlistCode })
+  return _.get(bip39.wordlists, wordlistName)
+}
 
 function mnemonicToEntropy (mnemonic, wordlistName) {
   validators.validateWordlistName(wordlistName)
@@ -34,6 +41,15 @@ function mnemonicToShareableCode (mnemonic, versionName, wordlistName) {
   return rawShareableCode + checksum
 }
 
+function shareableCodeToMnemonic (shareableCode) {
+  validators.validateShareableCodeChecksum(shareableCode)
+  const entropyHex = extractors.extractEntropyHex(shareableCode)
+  const wordlistCode = extractors.extractWordlistCode(shareableCode)
+  const wordlist = wordlistCodeToWordlist(wordlistCode)
+  return bip39.entropyToMnemonic(entropyHex, wordlist)
+}
+
 module.exports = {
-  mnemonicToShareableCode
+  mnemonicToShareableCode,
+  shareableCodeToMnemonic
 }
