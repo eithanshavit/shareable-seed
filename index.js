@@ -7,8 +7,8 @@ const wordlistCodes = require('./lib/wordlistCodes')
 const versionCodes = require('./lib/versionCodes')
 const util = require('./lib/util')
 const extractors = require('./lib/extractors')
+const errors = require('./lib/errors')
 
-const INVALID_WORDLIST_NAME = 'Invalid wordlist name'
 const ENTROPY_LENGTH_PADDED_HEX = 2
 const ENTROPY_PADDED_LENGTH = 64
 const CHECKSUM_HEX_LENGTH = 8
@@ -22,7 +22,7 @@ function wordlistCodeToWordlist (wordlistCode) {
 function mnemonicToEntropy (mnemonic, wordlistName) {
   validators.validateWordlistName(wordlistName)
   const wordlist = _.get(bip39.wordlists, wordlistName)
-  if (!wordlist) throw new Error(INVALID_WORDLIST_NAME)
+  if (!wordlist) throw new Error(errors.INVALID_WORDLIST_NAME)
   return bip39.mnemonicToEntropy(mnemonic, wordlist)
 }
 
