@@ -140,3 +140,22 @@ test('validateShareableCodeChecksum fails', () => {
     validators.validateShareableCodeChecksum(invalidCode)
   }).toThrow(Error(errors.INVALID_SHAREABLE_CODE_CHECKSUM))
 })
+
+test('validateShareList valid list', () => {
+  var shareList = ['1', '2', '3']
+  expect(validators.validateShareList(shareList)).toBeTruthy()
+})
+
+test('validateShareList invalid list (1)', () => {
+  var shareList = [1, '2', '3']
+  expect(() => {
+    validators.validateShareList(shareList)
+  }).toThrow(Error(errors.INVALID_SHARE_LIST))
+})
+
+test('validateShareList invalid list (2)', () => {
+  var shareList = 'Hello'
+  expect(() => {
+    validators.validateShareList(shareList)
+  }).toThrow(Error(errors.INVALID_SHARE_LIST))
+})

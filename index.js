@@ -59,6 +59,18 @@ function mnemonicToShares (mnemonic, shareCount, threshold, versionName, wordlis
   return shareIDToShare
 }
 
+function shareListToMnemonic (shareList) {
+  validators.validateShareList(shareList)
+  const potentialShareableCode = secrets.combine(shareList)
+  let mnemonic = ''
+  try {
+    mnemonic = shareableCodeToMnemonic(potentialShareableCode)
+  } catch (err) {
+    return null
+  }
+  return mnemonic
+}
+
 function shareableCodeToMnemonic (shareableCode) {
   validators.validateShareableCodeChecksum(shareableCode)
   const entropyHex = extractors.extractEntropyHex(shareableCode)
@@ -70,5 +82,6 @@ function shareableCodeToMnemonic (shareableCode) {
 module.exports = {
   mnemonicToShareableCode,
   mnemonicToShares,
-  shareableCodeToMnemonic
+  shareableCodeToMnemonic,
+  shareListToMnemonic
 }
