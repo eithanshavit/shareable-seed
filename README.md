@@ -2,7 +2,7 @@
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-A utility package for splitting a BIP39 seed mnemonic into **shares** that can later be combined to recover the seed.
+A utility package for splitting a BIP39 seed mnemonic into *shares* that can later be combined to recover the seed.
 
 ## Why should I use this?
 Use this method to securely distribute your BIP39 mnemonic among your trusted ones to protect from theft and to allow recovery during a disaster.
@@ -17,7 +17,7 @@ A threshold can be provided to allow a minimum number of the total *shares* to b
 
 *shares* can later be combined together back into the `shareable_code` and decoded into the original seed mnemonic.
 
-## `shareable_code` format:
+## shareable_code format:
 ### v1
 ```
 <versionCode(8bitHex)><wordlistCode(8bitHex)><entropyLenghHex(8bitHex)><entropy(128-256bitHex)><checksum(32bitHex)>
