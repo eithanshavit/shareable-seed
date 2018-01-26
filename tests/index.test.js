@@ -95,3 +95,27 @@ test('shareableCode<=>Mnemonic e2e (2)', () => {
   var shareableCode = shareableSeed.mnemonicToShareableCode(mnemonic, versionName, wordlistName)
   expect(shareableSeed.shareableCodeToMnemonic(shareableCode)).toBe(mnemonic)
 })
+
+test('mnemonicToShares (1)', () => {
+  var mnemonic = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareCount = 3
+  var threshold = 2
+  var shares = shareableSeed.mnemonicToShares(mnemonic, shareCount, threshold, versionName, wordlistName)
+  for (var i = 1; i < shareCount + 1; i++) {
+    expect(shares.hasOwnProperty(i)).toBeTruthy()
+  }
+})
+
+test('mnemonicToShares (2)', () => {
+  var mnemonic = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareCount = 9
+  var threshold = 9
+  var shares = shareableSeed.mnemonicToShares(mnemonic, shareCount, threshold, versionName, wordlistName)
+  for (var i = 1; i < shareCount + 1; i++) {
+    expect(shares.hasOwnProperty(i)).toBeTruthy()
+  }
+})

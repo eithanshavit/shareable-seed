@@ -2,6 +2,7 @@ const bip39 = require('bip39')
 const _ = require('lodash')
 const zeroFill = require('zero-fill')
 const shajs = require('sha.js')
+const secrets = require('secrets.js-grempe')
 const validators = require('./lib/validators')
 const wordlistCodes = require('./lib/wordlistCodes')
 const versionCodes = require('./lib/versionCodes')
@@ -41,6 +42,23 @@ function mnemonicToShareableCode (mnemonic, versionName, wordlistName) {
   return rawShareableCode + checksum
 }
 
+function mnemonicToShares (mnemonic, shareCount, threshold, versionName, wordlistName) {
+  validators.validateMnemonic(mnemonic)
+  validators.validateVersionName(versionName)
+  validators.validateWordlistName(wordlistName)
+  validators.validateShareCount(shareCount)
+  validators.validateThreshold(threshold)
+  const shareableCode = mnemonicToShareableCode(mnemonic, versionName, wordlistName)
+  const rawShares = secrets.share(shareableCode, shareCount, threshold, 0)
+  const shareIDToShare = {}
+  for (let i = 0; i < rawShares.length; i++) {
+    let rawShare = rawShares[i]
+    let { id } = secrets.extractShareComponents(rawShare)
+    shareIDToShare[id] = rawShare
+  }
+  return shareIDToShare
+}
+
 function shareableCodeToMnemonic (shareableCode) {
   validators.validateShareableCodeChecksum(shareableCode)
   const entropyHex = extractors.extractEntropyHex(shareableCode)
@@ -51,5 +69,6 @@ function shareableCodeToMnemonic (shareableCode) {
 
 module.exports = {
   mnemonicToShareableCode,
+  mnemonicToShares,
   shareableCodeToMnemonic
 }
