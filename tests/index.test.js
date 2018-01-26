@@ -122,6 +122,18 @@ test('mnemonicToShares (2)', () => {
   }
 })
 
+test('mnemonicToShares (3)', () => {
+  var mnemonic = 'seed sock milk update focus rotate barely fade car face mechanic mercy'
+  var wordlistName = 'english'
+  var versionName = 'v1'
+  var shareCount = 3
+  var threshold = 2
+  var shares = shareableSeed.mnemonicToShares(mnemonic, shareCount, threshold, versionName, wordlistName)
+  for (var i = 1; i < shareCount + 1; i++) {
+    expect(shares.hasOwnProperty(i)).toBeTruthy()
+  }
+})
+
 test('Mnemonic<=>Shares e2e 24 words 9/9 shares', () => {
   var mnemonic = 'exile ask congress lamp submit jacket era scheme attend cousin alcohol catch course end lucky hurt sentence oven short ball bird grab wing top'
   var wordlistName = 'english'
