@@ -1,6 +1,7 @@
-# Shareable Seed
+[![Build Status](https://travis-ci.org/eithanshavit/shareable-seed.svg?branch=master)](https://travis-ci.org/eithanshavit/shareable-seed)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+# Shareable Seed
 
 A utility package for splitting a BIP39 seed mnemonic into *shares* that can later be combined to recover the seed.
 
