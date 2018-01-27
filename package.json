@@ -22,13 +22,17 @@
   },
   "homepage": "https://github.com/eithanshavit/shareable-seed#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "jest": "^22.1.4",
     "standard": "^10.0.3"
   },
   "scripts": {
     "standard": "standard",
     "test": "npm run standard && npm run unit",
-    "unit": "jest"
+    "unit": "jest",
+    "compile": "babel --presets es2015 -d build/ src/",
+    "prepublish": "npm run compile"
   },
   "dependencies": {
     "bip39": "^2.5.0",
