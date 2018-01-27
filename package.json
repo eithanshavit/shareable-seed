@@ -2,7 +2,7 @@
   "name": "shareable-seed",
   "version": "2.0.0",
   "description": "A utility package for splitting a BIP39 mnemonic into shareable secrets that can later be combined to recover the seed.",
-  "main": "index.js",
+  "main": "publish/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eithanshavit/shareable-seed.git"
@@ -31,7 +31,7 @@
     "standard": "standard",
     "test": "npm run standard && npm run unit",
     "unit": "jest",
-    "compile": "babel --presets es2015 -d build/ src/",
+    "compile": "babel --presets es2015 -d publish/ src/",
     "prepublish": "npm run compile"
   },
   "dependencies": {
