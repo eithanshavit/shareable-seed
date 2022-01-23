@@ -1,6 +1,6 @@
 {
   "name": "shareable-seed",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "A utility package for splitting a BIP39 mnemonic into shareable secrets that can later be combined to recover the seed.",
   "main": "publish/index.js",
   "repository": {
@@ -13,7 +13,9 @@
     "seed",
     "mnemonic",
     "bip39",
-    "bip32"
+    "bip32",
+    "shamir",
+    "sharing"
   ],
   "author": "Eithan Shavit <npm@eithanshavit.com> (http://eithanshavit.org)",
   "license": "MIT",
@@ -24,8 +26,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "jest": "^22.1.4",
-    "standard": "^10.0.3"
+    "jest": "^27.4.7",
+    "standard": "^16.0.4"
   },
   "scripts": {
     "standard": "standard",
@@ -37,7 +39,7 @@
   "dependencies": {
     "bip39": "^2.5.0",
     "lodash": "^4.17.4",
-    "secrets.js-grempe": "^1.1.0",
+    "secrets.js-grempe": "^2.0.0",
     "sha.js": "^2.4.10",
     "zero-fill": "^2.2.3"
   }

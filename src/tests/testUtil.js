@@ -1,7 +1,7 @@
 const util = require('../lib/util')
 
 function mnemonicEntropyLengthHex (mnemonic) {
-  var mnemonicWordCount = mnemonic.trim().split(/\s+/g).length
+  const mnemonicWordCount = mnemonic.trim().split(/\s+/g).length
   return util.numberToHexCode(mnemonicWordCount * 32 / 12, 2, true)
 }
 

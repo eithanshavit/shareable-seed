@@ -47,12 +47,12 @@ function validateShareCount (shareCount) {
 }
 
 function validateWordlistName (wordlistName) {
-  if (!wordlistCodes.hasOwnProperty(wordlistName)) throw new Error(errors.INVALID_WORDLIST_NAME)
+  if (!Object.prototype.hasOwnProperty.call(wordlistCodes, wordlistName)) throw new Error(errors.INVALID_WORDLIST_NAME)
   return true
 }
 
 function validateVersionName (versionName) {
-  if (!versionCodes.hasOwnProperty(versionName)) throw new Error(errors.INVALID_SHAREABLE_CODE_VERSION)
+  if (!Object.prototype.hasOwnProperty.call(versionCodes, versionName)) throw new Error(errors.INVALID_SHAREABLE_CODE_VERSION)
   return true
 }
 

@@ -32,9 +32,10 @@ function extractEntropyLength (shareableCode) {
   validators.validateShareableCodeChecksum(shareableCode)
   const versionHex = extractVersionHex(shareableCode)
   switch (versionHex) {
-    case versionCodes.v1:
+    case versionCodes.v1: {
       const entropyLenghHex = shareableCode.slice(VERSION_V1_ENTROPY_LENGTH_HEX_OFFSET, VERSION_V1_ENTROPY_LENGTH_HEX_OFFSET + VERSION_V1_ENTROPY_LENGTH_HEX_LENGTH)
       return parseInt(entropyLenghHex, 16)
+    }
     default:
       throw new Error(errors.INVALID_SHAREABLE_CODE_VERSION)
   }
@@ -44,11 +45,12 @@ function extractEntropyHex (shareableCode) {
   validators.validateShareableCodeChecksum(shareableCode)
   const versionHex = extractVersionHex(shareableCode)
   switch (versionHex) {
-    case versionCodes.v1:
+    case versionCodes.v1: {
       const entropyLength = extractEntropyLength(shareableCode)
       const offset = VERSION_V1_ENTROPY_HEX_OFFSET + (VERSION_V1_ENTROPY_HEX_MAX_LENGTH - entropyLength)
       const entropyHex = shareableCode.slice(offset, offset + entropyLength)
       return entropyHex
+    }
     default:
       throw new Error(errors.INVALID_SHAREABLE_CODE_VERSION)
   }

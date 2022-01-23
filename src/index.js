@@ -51,8 +51,8 @@ function mnemonicToShares (mnemonic, shareCount, threshold, versionName, wordlis
   const rawShares = secrets.share(shareableCode, shareCount, threshold, 0)
   const shareIDToShare = {}
   for (let i = 0; i < rawShares.length; i++) {
-    let rawShare = rawShares[i]
-    let { id } = secrets.extractShareComponents(rawShare)
+    const rawShare = rawShares[i]
+    const { id } = secrets.extractShareComponents(rawShare)
     shareIDToShare[id] = rawShare
   }
   return shareIDToShare
